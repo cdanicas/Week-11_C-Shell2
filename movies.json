@@ -1,0 +1,904 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "It's a Wonderful Life",
+      "year": 1946,
+      "holidays": ["Christmas"],
+      "themes": ["Family", "Hope", "Community", "Classic"],
+      "genre": "Drama",
+      "description": "An angel helps a compassionate but despairingly frustrated businessman by showing what life would have been like if he never existed."
+    },
+    {
+      "id": 2,
+      "title": "Home Alone",
+      "year": 1990,
+      "holidays": ["Christmas"],
+      "themes": ["Family", "Comedy", "Adventure"],
+      "genre": "Comedy",
+      "description": "An eight-year-old troublemaker must protect his house from a pair of burglars when he is accidentally left home alone by his family during Christmas vacation."
+    },
+    {
+      "id": 3,
+      "title": "The Nightmare Before Christmas",
+      "year": 1993,
+      "holidays": ["Christmas"],
+      "themes": ["Animation", "Fantasy", "Musical"],
+      "genre": "Animation",
+      "description": "Jack Skellington, king of Halloween Town, discovers Christmas Town, but his attempts to bring Christmas to his home causes confusion."
+    },
+    {
+      "id": 4,
+      "title": "Elf",
+      "year": 2003,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Family", "Modern Classic"],
+      "genre": "Comedy",
+      "description": "After discovering he is a human, a man raised as an elf at the North Pole decides to travel to New York City to locate his real father."
+    },
+    {
+      "id": 5,
+      "title": "Die Hard",
+      "year": 1988,
+      "holidays": ["Christmas"],
+      "themes": ["Action", "Thriller"],
+      "genre": "Action",
+      "description": "An NYPD officer tries to save his wife and several others taken hostage by German terrorists during a Christmas party at the Nakatomi Plaza in Los Angeles."
+    },
+    {
+      "id": 6,
+      "title": "A Christmas Story",
+      "year": 1983,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Family", "Nostalgia", "Classic"],
+      "genre": "Comedy",
+      "description": "In the 1940s, a young boy named Ralphie attempts to convince his parents, his teacher, and Santa that a Red Ryder BB gun really is the perfect Christmas gift."
+    },
+    {
+      "id": 7,
+      "title": "Love Actually",
+      "year": 2003,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Comedy", "Ensemble"],
+      "genre": "Romance",
+      "description": "Follows the lives of eight very different couples in dealing with their love lives in various loosely interrelated tales all set during a frantic month before Christmas in London."
+    },
+    {
+      "id": 8,
+      "title": "The Polar Express",
+      "year": 2004,
+      "holidays": ["Christmas"],
+      "themes": ["Animation", "Family", "Adventure"],
+      "genre": "Animation",
+      "description": "On Christmas Eve, a young boy embarks on a magical adventure to the North Pole on the Polar Express."
+    },
+    {
+      "id": 9,
+      "title": "Miracle on 34th Street",
+      "year": 1947,
+      "holidays": ["Christmas"],
+      "themes": ["Family", "Classic", "Fantasy"],
+      "genre": "Drama",
+      "description": "After a divorced New York mother hires a nice old man to play Santa Claus at Macy's, she is startled by his claim to be the genuine article."
+    },
+    {
+      "id": 10,
+      "title": "National Lampoon's Christmas Vacation",
+      "year": 1989,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Family"],
+      "genre": "Comedy",
+      "description": "The Griswold family's plans for a big family Christmas predictably turn into a big disaster."
+    },
+    {
+      "id": 11,
+      "title": "The Santa Clause",
+      "year": 1994,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Family", "Fantasy"],
+      "genre": "Comedy",
+      "description": "When a man inadvertently makes Santa fall off his roof on Christmas Eve, he finds himself magically recruited to take his place."
+    },
+    {
+      "id": 12,
+      "title": "How the Grinch Stole Christmas",
+      "year": 2000,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Family", "Fantasy"],
+      "genre": "Comedy",
+      "description": "On the outskirts of Whoville lives a green, revenge-seeking Grinch who plans to ruin Christmas for all of the citizens of the town."
+    },
+    {
+      "id": 13,
+      "title": "Klaus",
+      "year": 2019,
+      "holidays": ["Christmas"],
+      "themes": ["Animation", "Family", "Modern"],
+      "genre": "Animation",
+      "description": "A simple act of kindness always sparks another, even in a frozen, faraway place. When Smeerensburg's new postman befriends a reclusive toymaker, their gifts melt an age-old feud."
+    },
+    {
+      "id": 14,
+      "title": "The Holiday",
+      "year": 2006,
+      "holidays": ["Christmas", "New Years"],
+      "themes": ["Romance", "Comedy"],
+      "genre": "Romance",
+      "description": "Two women troubled with guy-problems swap homes in each other's countries, where they each meet a local guy and fall in love."
+    },
+    {
+      "id": 15,
+      "title": "Scrooged",
+      "year": 1988,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Fantasy"],
+      "genre": "Comedy",
+      "description": "A selfish, cynical television executive is haunted by three spirits bearing lessons on Christmas Eve."
+    },
+    {
+      "id": 16,
+      "title": "White Christmas",
+      "year": 1954,
+      "holidays": ["Christmas"],
+      "themes": ["Musical", "Romance", "Classic"],
+      "genre": "Musical",
+      "description": "A successful song-and-dance team become romantically involved with a sister act and team up to save the failing Vermont inn of their former commanding general."
+    },
+    {
+      "id": 17,
+      "title": "The Muppet Christmas Carol",
+      "year": 1992,
+      "holidays": ["Christmas"],
+      "themes": ["Musical", "Family", "Comedy"],
+      "genre": "Musical",
+      "description": "The Muppet characters tell their version of the classic tale of an old and bitter miser's redemption on Christmas Eve."
+    },
+    {
+      "id": 18,
+      "title": "A Christmas Carol",
+      "year": 2009,
+      "holidays": ["Christmas"],
+      "themes": ["Animation", "Fantasy", "Drama"],
+      "genre": "Animation",
+      "description": "An animated retelling of Charles Dickens' classic novel about a Victorian-era miser taken on a journey of self-redemption, courtesy of several mysterious Christmas apparitions."
+    },
+    {
+      "id": 19,
+      "title": "Jingle All the Way",
+      "year": 1996,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Family", "Action"],
+      "genre": "Comedy",
+      "description": "A father vows to get his son a Turbo Man action figure for Christmas. However, every store is sold out, and he must travel all over town and compete with everybody else in order to find one."
+    },
+    {
+      "id": 20,
+      "title": "The Family Stone",
+      "year": 2005,
+      "holidays": ["Christmas"],
+      "themes": ["Drama", "Comedy", "Family"],
+      "genre": "Drama",
+      "description": "An uptight, conservative businesswoman accompanies her boyfriend to his eccentric and outgoing family's annual Christmas celebration and finds that she's a fish out of water."
+    },
+    {
+      "id": 21,
+      "title": "Eight Crazy Nights",
+      "year": 2002,
+      "holidays": ["Hanukkah"],
+      "themes": ["Animation", "Comedy", "Musical"],
+      "genre": "Animation",
+      "description": "Davey Stone, a 33-year old party animal, finds himself in trouble with the law after his wild ways go too far. Facing jail time, he's forced to do community service."
+    },
+    {
+      "id": 22,
+      "title": "The Hebrew Hammer",
+      "year": 2003,
+      "holidays": ["Hanukkah"],
+      "themes": ["Comedy", "Action", "Parody"],
+      "genre": "Comedy",
+      "description": "A Jewish superhero must stop Santa's evil son from destroying Hanukkah."
+    },
+    {
+      "id": 23,
+      "title": "An American Tail",
+      "year": 1986,
+      "holidays": ["Hanukkah"],
+      "themes": ["Animation", "Family", "Adventure"],
+      "genre": "Animation",
+      "description": "While emigrating to the United States, a young Russian mouse gets separated from his family and must relocate them while trying to survive in a new country."
+    },
+    {
+      "id": 24,
+      "title": "Happiest Season",
+      "year": 2020,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Comedy", "LGBTQ+", "Modern"],
+      "genre": "Romance",
+      "description": "A holiday romantic comedy that captures the range of emotions tied to wanting your family's acceptance, being true to yourself, and trying not to ruin Christmas."
+    },
+    {
+      "id": 25,
+      "title": "Last Holiday",
+      "year": 2006,
+      "holidays": ["Christmas", "New Years"],
+      "themes": ["Comedy", "Drama", "Romance"],
+      "genre": "Comedy",
+      "description": "Upon learning of a terminal illness, a shy woman decides to take a European vacation."
+    },
+    {
+      "id": 26,
+      "title": "New Year's Eve",
+      "year": 2011,
+      "holidays": ["New Years"],
+      "themes": ["Romance", "Comedy", "Ensemble"],
+      "genre": "Romance",
+      "description": "The lives of several couples and singles in New York City intertwine over the course of New Year's Eve."
+    },
+    {
+      "id": 27,
+      "title": "When Harry Met Sally",
+      "year": 1989,
+      "holidays": ["New Years"],
+      "themes": ["Romance", "Comedy", "Classic"],
+      "genre": "Romance",
+      "description": "Harry and Sally have known each other for years, and are very good friends, but they fear sex would ruin the friendship."
+    },
+    {
+      "id": 28,
+      "title": "The Poseidon Adventure",
+      "year": 1972,
+      "holidays": ["New Years"],
+      "themes": ["Action", "Drama", "Disaster"],
+      "genre": "Action",
+      "description": "A group of passengers struggle to survive and escape when their ocean liner capsizes due to a rogue wave on New Year's Eve."
+    },
+    {
+      "id": 29,
+      "title": "200 Cigarettes",
+      "year": 1999,
+      "holidays": ["New Years"],
+      "themes": ["Comedy", "Romance", "Ensemble"],
+      "genre": "Comedy",
+      "description": "A collection of twentysomethings try to cope with relationships, loneliness, desire and their individual neuroses on New Year's Eve 1981 in New York City."
+    },
+    {
+      "id": 30,
+      "title": "The Apartment",
+      "year": 1960,
+      "holidays": ["Christmas", "New Years"],
+      "themes": ["Romance", "Drama", "Classic"],
+      "genre": "Drama",
+      "description": "A Manhattan insurance clerk tries to rise in his company by letting its executives use his apartment for trysts, but complications and a romance arise."
+    },
+    {
+      "id": 31,
+      "title": "Frozen",
+      "year": 2013,
+      "holidays": ["Winter Solstice"],
+      "themes": ["Animation", "Family", "Musical", "Winter"],
+      "genre": "Animation",
+      "description": "When the newly crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister Anna teams up with a mountain man, his playful reindeer, and a snowman to change the weather."
+    },
+    {
+      "id": 32,
+      "title": "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe",
+      "year": 2005,
+      "holidays": ["Winter Solstice"],
+      "themes": ["Fantasy", "Adventure", "Family", "Winter"],
+      "genre": "Fantasy",
+      "description": "Four kids travel through a wardrobe to the land of Narnia and learn of their destiny to free it with the guidance of a mystical lion."
+    },
+    {
+      "id": 33,
+      "title": "The Grey",
+      "year": 2011,
+      "holidays": ["Winter Solstice"],
+      "themes": ["Thriller", "Drama", "Survival", "Winter"],
+      "genre": "Thriller",
+      "description": "After their plane crashes in Alaska, six oil workers are led by a skilled huntsman to survival, but a pack of merciless wolves haunts their every step."
+    },
+    {
+      "id": 34,
+      "title": "The Revenant",
+      "year": 2015,
+      "holidays": ["Winter Solstice"],
+      "themes": ["Drama", "Adventure", "Survival", "Winter"],
+      "genre": "Drama",
+      "description": "A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead by members of his own hunting team."
+    },
+    {
+      "id": 35,
+      "title": "Brother Bear",
+      "year": 2003,
+      "holidays": ["Winter Solstice"],
+      "themes": ["Animation", "Family", "Adventure", "Winter"],
+      "genre": "Animation",
+      "description": "A young Inuit hunter seeks vengeance against a bear, only to be magically transformed into a bear himself."
+    },
+    {
+      "id": 36,
+      "title": "The Black Candle",
+      "year": 2010,
+      "holidays": ["Kwanzaa"],
+      "themes": ["Documentary", "Cultural", "Family"],
+      "genre": "Documentary",
+      "description": "A documentary exploring the history, values, and celebrations of Kwanzaa."
+    },
+    {
+      "id": 37,
+      "title": "The Perfect Holiday",
+      "year": 2007,
+      "holidays": ["Christmas", "Kwanzaa"],
+      "themes": ["Comedy", "Romance", "Family"],
+      "genre": "Comedy",
+      "description": "A young girl turns to a department store Santa in the hopes that he will help find a new husband for her divorced mother."
+    },
+    {
+      "id": 38,
+      "title": "This Christmas",
+      "year": 2007,
+      "holidays": ["Christmas", "Kwanzaa"],
+      "themes": ["Comedy", "Drama", "Family"],
+      "genre": "Drama",
+      "description": "A Christmastime drama told through the eyes of the Whitfield family as they come together for the holidays."
+    },
+    {
+      "id": 39,
+      "title": "Almost Christmas",
+      "year": 2016,
+      "holidays": ["Christmas", "Kwanzaa"],
+      "themes": ["Comedy", "Drama", "Family"],
+      "genre": "Comedy",
+      "description": "A dysfunctional family gathers together for their first Christmas since their mom passed."
+    },
+    {
+      "id": 40,
+      "title": "The Best Man Holiday",
+      "year": 2013,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Drama", "Ensemble"],
+      "genre": "Drama",
+      "description": "When college friends reunite after 15 years over the Christmas holidays, they discover just how easy it is for long-forgotten rivalries and romances to be reignited."
+    },
+    {
+      "id": 41,
+      "title": "Coco",
+      "year": 2017,
+      "holidays": ["Christmas", "Noche Buena"],
+      "themes": ["Animation", "Family", "Musical", "Cultural"],
+      "genre": "Animation",
+      "description": "Aspiring musician Miguel, confronted with his family's ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather, a legendary singer."
+    },
+    {
+      "id": 42,
+      "title": "The Book of Life",
+      "year": 2014,
+      "holidays": ["Christmas", "Noche Buena"],
+      "themes": ["Animation", "Family", "Musical", "Cultural"],
+      "genre": "Animation",
+      "description": "Manolo, a young man who is torn between fulfilling the expectations of his family and following his heart, embarks on an adventure that spans three fantastic worlds."
+    },
+    {
+      "id": 43,
+      "title": "A Bad Moms Christmas",
+      "year": 2017,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Family"],
+      "genre": "Comedy",
+      "description": "As their own mothers drop in unexpectedly, our three under-appreciated and over-burdened moms rebel against the challenges and expectations of the Super Bowl for mothers: Christmas."
+    },
+    {
+      "id": 44,
+      "title": "Fred Claus",
+      "year": 2007,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Family", "Fantasy"],
+      "genre": "Comedy",
+      "description": "Fred Claus, Santa's bitter older brother, is forced to move to the North Pole to help Santa and the elves prepare for Christmas in exchange for cash."
+    },
+    {
+      "id": 45,
+      "title": "Arthur Christmas",
+      "year": 2011,
+      "holidays": ["Christmas"],
+      "themes": ["Animation", "Family", "Adventure"],
+      "genre": "Animation",
+      "description": "Santa's clumsy son Arthur sets out on a mission with Grandsanta to give out a present they misplaced to a young girl in less than two hours."
+    },
+    {
+      "id": 46,
+      "title": "Rise of the Guardians",
+      "year": 2012,
+      "holidays": ["Christmas", "Winter Solstice"],
+      "themes": ["Animation", "Family", "Fantasy", "Adventure"],
+      "genre": "Animation",
+      "description": "When the evil spirit Pitch launches an assault on Earth, the Immortal Guardians team up to protect the innocence of children all around the world."
+    },
+    {
+      "id": 47,
+      "title": "Gremlins",
+      "year": 1984,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Horror", "Fantasy"],
+      "genre": "Horror",
+      "description": "A boy inadvertently breaks three important rules concerning his new pet and unleashes a horde of malevolently mischievous monsters on a small town."
+    },
+    {
+      "id": 48,
+      "title": "Krampus",
+      "year": 2015,
+      "holidays": ["Christmas"],
+      "themes": ["Horror", "Comedy", "Fantasy"],
+      "genre": "Horror",
+      "description": "A boy who has a bad Christmas ends up accidentally summoning a festive demon to his family home."
+    },
+    {
+      "id": 49,
+      "title": "Black Christmas",
+      "year": 1974,
+      "holidays": ["Christmas"],
+      "themes": ["Horror", "Thriller"],
+      "genre": "Horror",
+      "description": "During their Christmas break, a group of sorority girls are stalked by a stranger."
+    },
+    {
+      "id": 50,
+      "title": "Lethal Weapon",
+      "year": 1987,
+      "holidays": ["Christmas"],
+      "themes": ["Action", "Thriller", "Comedy"],
+      "genre": "Action",
+      "description": "Two newly paired cops who are complete opposites must put aside their differences in order to catch a gang of drug smugglers."
+    },
+    {
+      "id": 51,
+      "title": "Kiss Kiss Bang Bang",
+      "year": 2005,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Crime", "Mystery"],
+      "genre": "Comedy",
+      "description": "A murder mystery brings together a private eye, a struggling actress, and a thief masquerading as an actor."
+    },
+    {
+      "id": 52,
+      "title": "The Ref",
+      "year": 1994,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Crime"],
+      "genre": "Comedy",
+      "description": "A cat burglar is forced to take a bickering, dysfunctional family hostage on Christmas Eve."
+    },
+    {
+      "id": 53,
+      "title": "Trading Places",
+      "year": 1983,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy"],
+      "genre": "Comedy",
+      "description": "A snobbish investor and a wily street con artist find their positions reversed as part of a bet by two callous millionaires."
+    },
+    {
+      "id": 54,
+      "title": "While You Were Sleeping",
+      "year": 1995,
+      "holidays": ["Christmas", "New Years"],
+      "themes": ["Romance", "Comedy"],
+      "genre": "Romance",
+      "description": "A hopelessly romantic Chicago Transit Authority token collector is mistaken for the fiancée of a coma patient."
+    },
+    {
+      "id": 55,
+      "title": "Carol",
+      "year": 2015,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Drama", "LGBTQ+"],
+      "genre": "Drama",
+      "description": "An aspiring photographer develops an intimate relationship with an older woman in 1950s New York."
+    },
+    {
+      "id": 56,
+      "title": "Desk Set",
+      "year": 1957,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Comedy", "Classic"],
+      "genre": "Romance",
+      "description": "Two extremely strong personalities clash over the computerization of a television network's research department."
+    },
+    {
+      "id": 57,
+      "title": "In Bruges",
+      "year": 2008,
+      "holidays": ["Christmas"],
+      "themes": ["Crime", "Drama", "Comedy"],
+      "genre": "Crime",
+      "description": "Guilt-stricken after a job gone wrong, hitman Ray and his partner await orders from their ruthless boss in Bruges, Belgium, the last place in the world Ray wants to be."
+    },
+    {
+      "id": 58,
+      "title": "Batman Returns",
+      "year": 1992,
+      "holidays": ["Christmas"],
+      "themes": ["Action", "Fantasy", "Superhero"],
+      "genre": "Action",
+      "description": "While Batman deals with a deformed man calling himself the Penguin, an employee of a corrupt businessman transforms into the Catwoman."
+    },
+    {
+      "id": 59,
+      "title": "Edward Scissorhands",
+      "year": 1990,
+      "holidays": ["Christmas"],
+      "themes": ["Fantasy", "Romance", "Drama"],
+      "genre": "Fantasy",
+      "description": "An artificial man, who was incompletely constructed and has scissors for hands, leads a solitary life. Then one day, a suburban lady meets him and introduces him to her world."
+    },
+    {
+      "id": 60,
+      "title": "Trapped in Paradise",
+      "year": 1994,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Crime"],
+      "genre": "Comedy",
+      "description": "Residents of a friendly Pennsylvania town foil three brothers' plan to rob a bank on Christmas Eve."
+    },
+    {
+      "id": 61,
+      "title": "Reindeer Games",
+      "year": 2000,
+      "holidays": ["Christmas"],
+      "themes": ["Action", "Crime", "Thriller"],
+      "genre": "Action",
+      "description": "After assuming his dead cell-mate's identity to get with the other man's girlfriend, an ex-convict finds himself a reluctant participant in a casino heist."
+    },
+    {
+      "id": 62,
+      "title": "The Long Kiss Goodnight",
+      "year": 1996,
+      "holidays": ["Christmas"],
+      "themes": ["Action", "Thriller"],
+      "genre": "Action",
+      "description": "Samantha Caine, a suburban schoolteacher, suffers from amnesia. When she begins to remember her past as a deadly assassin, she goes on the run."
+    },
+    {
+      "id": 63,
+      "title": "Four Christmases",
+      "year": 2008,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Romance"],
+      "genre": "Comedy",
+      "description": "A couple struggles to visit all four of their divorced parents on Christmas."
+    },
+    {
+      "id": 64,
+      "title": "Deck the Halls",
+      "year": 2006,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Family"],
+      "genre": "Comedy",
+      "description": "Two neighbors have it out after one of them decorates his house for the holidays so brightly that it can be seen from space."
+    },
+    {
+      "id": 65,
+      "title": "Prancer",
+      "year": 1989,
+      "holidays": ["Christmas"],
+      "themes": ["Family", "Drama", "Fantasy"],
+      "genre": "Family",
+      "description": "A farm girl nurses a wounded reindeer she believes is one of Santa's, hoping to bring it back to health in time for Christmas."
+    },
+    {
+      "id": 66,
+      "title": "Rudolph the Red-Nosed Reindeer",
+      "year": 1964,
+      "holidays": ["Christmas"],
+      "themes": ["Animation", "Family", "Musical", "Classic", "Stop-Motion"],
+      "genre": "Animation",
+      "description": "A misfit reindeer and his friends look for a place that will accept them."
+    },
+    {
+      "id": 67,
+      "title": "A Charlie Brown Christmas",
+      "year": 1965,
+      "holidays": ["Christmas"],
+      "themes": ["Animation", "Family", "Musical", "Classic"],
+      "genre": "Animation",
+      "description": "Depressed at the commercialism he sees around him, Charlie Brown tries to find the true meaning of Christmas."
+    },
+    {
+      "id": 68,
+      "title": "Frosty the Snowman",
+      "year": 1969,
+      "holidays": ["Christmas", "Winter Solstice"],
+      "themes": ["Animation", "Family", "Classic"],
+      "genre": "Animation",
+      "description": "A living snowman and a little girl struggle to elude a greedy magician who is after the snowman's magic hat."
+    },
+    {
+      "id": 69,
+      "title": "How the Grinch Stole Christmas!",
+      "year": 1966,
+      "holidays": ["Christmas"],
+      "themes": ["Animation", "Family", "Classic"],
+      "genre": "Animation",
+      "description": "A grumpy hermit hatches a plan to steal Christmas from the Whos of Whoville."
+    },
+    {
+      "id": 70,
+      "title": "The Year Without a Santa Claus",
+      "year": 1974,
+      "holidays": ["Christmas"],
+      "themes": ["Animation", "Family", "Musical", "Classic", "Stop-Motion"],
+      "genre": "Animation",
+      "description": "When a weary and discouraged Santa Claus considers skipping his Christmas Eve run one year, Mrs. Claus and his elves set out to change his mind."
+    },
+    {
+      "id": 71,
+      "title": "The Little Drummer Boy",
+      "year": 1968,
+      "holidays": ["Christmas"],
+      "themes": ["Animation", "Family", "Musical", "Classic", "Stop-Motion"],
+      "genre": "Animation",
+      "description": "An orphan drummer boy who hates humanity finds his life changed forever when he meets three wise men en route to Bethlehem."
+    },
+    {
+      "id": 72,
+      "title": "Noelle",
+      "year": 2019,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Family", "Fantasy", "Modern"],
+      "genre": "Comedy",
+      "description": "Santa's daughter must take over the family business when her father retires and her brother, who is supposed to inherit the Santa role, gets cold feet."
+    },
+    {
+      "id": 73,
+      "title": "Jingle Jangle: A Christmas Journey",
+      "year": 2020,
+      "holidays": ["Christmas"],
+      "themes": ["Musical", "Family", "Fantasy", "Modern"],
+      "genre": "Musical",
+      "description": "An imaginary world comes to life in a holiday tale of an eccentric toymaker, his adventurous granddaughter, and a magical invention that has the power to change their lives forever."
+    },
+    {
+      "id": 74,
+      "title": "A Boy Called Christmas",
+      "year": 2021,
+      "holidays": ["Christmas"],
+      "themes": ["Fantasy", "Family", "Adventure", "Modern"],
+      "genre": "Fantasy",
+      "description": "In this origin story of Father Christmas, an ordinary boy called Nikolas sets out on an extraordinary adventure into the snowy north in search of his father."
+    },
+    {
+      "id": 75,
+      "title": "The Christmas Chronicles",
+      "year": 2018,
+      "holidays": ["Christmas"],
+      "themes": ["Family", "Adventure", "Comedy", "Modern"],
+      "genre": "Family",
+      "description": "The story of sister and brother, Kate and Teddy Pierce, whose Christmas Eve plan to catch Santa Claus on camera turns into an unexpected journey."
+    },
+    {
+      "id": 76,
+      "title": "The Christmas Chronicles 2",
+      "year": 2020,
+      "holidays": ["Christmas"],
+      "themes": ["Family", "Adventure", "Comedy", "Modern"],
+      "genre": "Family",
+      "description": "Kate Pierce, now a cynical teen, is unexpectedly reunited with Santa Claus when a mysterious troublemaker threatens to cancel Christmas - forever."
+    },
+    {
+      "id": 77,
+      "title": "Dolly Parton's Christmas on the Square",
+      "year": 2020,
+      "holidays": ["Christmas"],
+      "themes": ["Musical", "Comedy", "Drama", "Modern"],
+      "genre": "Musical",
+      "description": "An embittered scrooge of a woman plans to sell her small town, regardless of the consequences to the people who live there. An angel intervenes to try to change her heart."
+    },
+    {
+      "id": 78,
+      "title": "Spirited",
+      "year": 2022,
+      "holidays": ["Christmas"],
+      "themes": ["Musical", "Comedy", "Fantasy", "Modern"],
+      "genre": "Musical",
+      "description": "A musical version of Charles Dickens's story of a miserly misanthrope who is taken on a magical journey."
+    },
+    {
+      "id": 79,
+      "title": "Violent Night",
+      "year": 2022,
+      "holidays": ["Christmas"],
+      "themes": ["Action", "Comedy", "Modern"],
+      "genre": "Action",
+      "description": "When a team of mercenaries breaks into a wealthy family compound on Christmas Eve, Santa Claus is caught in the crossfire and must save the hostages and save the day."
+    },
+    {
+      "id": 80,
+      "title": "The Man Who Invented Christmas",
+      "year": 2017,
+      "holidays": ["Christmas"],
+      "themes": ["Drama", "Biography"],
+      "genre": "Drama",
+      "description": "The journey that led to Charles Dickens' creation of 'A Christmas Carol,' a timeless tale that would redefine Christmas."
+    },
+    {
+      "id": 81,
+      "title": "The Christmas Blessing",
+      "year": 2005,
+      "holidays": ["Christmas"],
+      "themes": ["Drama", "Romance", "Family"],
+      "genre": "Drama",
+      "description": "A young doctor encounters romance and deals with his past when he returns to his hometown during the holidays."
+    },
+    {
+      "id": 82,
+      "title": "Comfort and Joy",
+      "year": 2003,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Drama"],
+      "genre": "Romance",
+      "description": "After a family tragedy, a woman retreats to a remote cabin where she encounters a stranger who helps her rediscover joy."
+    },
+    {
+      "id": 83,
+      "title": "Single All the Way",
+      "year": 2021,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Comedy", "LGBTQ+", "Modern"],
+      "genre": "Romance",
+      "description": "Desperate to avoid his family's judgment about his perpetual single status, Peter convinces his best friend Nick to join him for the holidays and pretend that they're now in a relationship."
+    },
+    {
+      "id": 84,
+      "title": "Let It Snow",
+      "year": 2019,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Comedy", "Teen", "Modern"],
+      "genre": "Romance",
+      "description": "In a small town on Christmas Eve, a snowstorm brings together a group of young people."
+    },
+    {
+      "id": 85,
+      "title": "Just Friends",
+      "year": 2005,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Comedy"],
+      "genre": "Comedy",
+      "description": "While visiting his hometown during Christmas, a man comes face-to-face with his old high school crush whom he was best friends with."
+    },
+    {
+      "id": 86,
+      "title": "Holiday Inn",
+      "year": 1942,
+      "holidays": ["Christmas", "New Years"],
+      "themes": ["Musical", "Romance", "Classic"],
+      "genre": "Musical",
+      "description": "At an inn which is only open on holidays, a crooner and a hoofer vie for the affections of a beautiful up-and-coming performer."
+    },
+    {
+      "id": 87,
+      "title": "Meet Me in St. Louis",
+      "year": 1944,
+      "holidays": ["Christmas"],
+      "themes": ["Musical", "Romance", "Family", "Classic"],
+      "genre": "Musical",
+      "description": "Young love and childish fears highlight a year in the life of a turn-of-the-century family."
+    },
+    {
+      "id": 88,
+      "title": "Remember the Night",
+      "year": 1940,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Drama", "Classic"],
+      "genre": "Romance",
+      "description": "A prosecutor falls in love with a shoplifter when he takes her home for the Christmas holidays."
+    },
+    {
+      "id": 89,
+      "title": "Christmas in Connecticut",
+      "year": 1945,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Romance", "Classic"],
+      "genre": "Comedy",
+      "description": "A food writer who has lied about being the perfect housewife must try to cover her deception when her boss and a war hero invite themselves to her home for a holiday meal."
+    },
+    {
+      "id": 90,
+      "title": "The Bishop's Wife",
+      "year": 1947,
+      "holidays": ["Christmas"],
+      "themes": ["Comedy", "Fantasy", "Romance", "Classic"],
+      "genre": "Fantasy",
+      "description": "An angel arrives to help a bishop and his wife in their efforts to raise money for a new church."
+    },
+    {
+      "id": 91,
+      "title": "Beyond the Lights",
+      "year": 2014,
+      "holidays": ["New Years"],
+      "themes": ["Romance", "Drama", "Music"],
+      "genre": "Romance",
+      "description": "The pressures of fame have superstar singer Noni on the edge, until she meets Kaz, a young cop who works to help her find the courage to develop her own voice."
+    },
+    {
+      "id": 92,
+      "title": "Bridget Jones's Diary",
+      "year": 2001,
+      "holidays": ["Christmas", "New Years"],
+      "themes": ["Romance", "Comedy"],
+      "genre": "Romance",
+      "description": "Bridget Jones's determination to improve herself while she looks for love in a year in which she keeps a personal diary."
+    },
+    {
+      "id": 93,
+      "title": "About Time",
+      "year": 2013,
+      "holidays": ["New Years"],
+      "themes": ["Romance", "Fantasy", "Drama"],
+      "genre": "Romance",
+      "description": "At the age of 21, Tim discovers he can travel in time and change what happens and has happened in his own life. His decision to make his world a better place by getting a girlfriend turns out not to be as easy as you might think."
+    },
+    {
+      "id": 94,
+      "title": "The Princess Switch",
+      "year": 2018,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Comedy", "Modern"],
+      "genre": "Romance",
+      "description": "A Chicago baker and a soon-to-be princess discover they look like twins, so they hatch a plan to trade places for Christmas."
+    },
+    {
+      "id": 95,
+      "title": "A Knight Before Christmas",
+      "year": 2019,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Fantasy", "Comedy", "Modern"],
+      "genre": "Romance",
+      "description": "After a magical spell transports a medieval knight to modern-day Ohio during the holiday season, he befriends a kind-hearted science teacher who's been disillusioned by love."
+    },
+    {
+      "id": 96,
+      "title": "Falling for Christmas",
+      "year": 2022,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Comedy", "Modern"],
+      "genre": "Romance",
+      "description": "A young, newly engaged heiress has a skiing accident in the days before Christmas. After she is diagnosed with amnesia, she finds herself in the care of a handsome lodge owner."
+    },
+    {
+      "id": 97,
+      "title": "Dash & Lily",
+      "year": 2020,
+      "holidays": ["Christmas", "New Years"],
+      "themes": ["Romance", "Teen", "Modern"],
+      "genre": "Romance",
+      "description": "A whirlwind romance begins when cynical Dash and optimistic Lily trade messages and dares in a red notebook they pass back and forth around New York City during the holidays."
+    },
+    {
+      "id": 98,
+      "title": "A Castle for Christmas",
+      "year": 2021,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Comedy", "Modern"],
+      "genre": "Romance",
+      "description": "To escape a scandal, a bestselling author journeys to Scotland, where she falls in love with a castle - and faces off with the grumpy duke who owns it."
+    },
+    {
+      "id": 99,
+      "title": "The Noel Diary",
+      "year": 2022,
+      "holidays": ["Christmas"],
+      "themes": ["Romance", "Drama", "Modern"],
+      "genre": "Romance",
+      "description": "Cleaning out his childhood home at Christmas, a novelist meets a woman searching for her birth mother. Will an old diary unlock their pasts?"
+    },
+    {
+      "id": 100,
+      "title": "Balto",
+      "year": 1995,
+      "holidays": ["Winter Solstice"],
+      "themes": ["Animation", "Family", "Adventure", "Winter"],
+      "genre": "Animation",
+      "description": "An outcast half-wolf risks his life to prevent a deadly epidemic from ravaging Nome, Alaska."
+    }
+  ]
+}

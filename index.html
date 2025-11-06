@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Holiday Movie Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>❄️ Winter Holiday Movie Tracker</h1>
+            <p class="tagline">Track your favorite holiday movies from Christmas, Hanukkah, Kwanzaa, New Years, and more!</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Filters Section -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label for="holiday-filter">Holiday:</label>
+                    <select id="holiday-filter">
+                        <option value="all">All Holidays</option>
+                        <option value="Christmas">Christmas</option>
+                        <option value="Hanukkah">Hanukkah</option>
+                        <option value="New Years">New Years</option>
+                        <option value="Kwanzaa">Kwanzaa</option>
+                        <option value="Winter Solstice">Winter Solstice</option>
+                        <option value="Noche Buena">Noche Buena</option>
+                        <option value="Las Posadas">Las Posadas</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="genre-filter">Genre:</label>
+                    <select id="genre-filter">
+                        <option value="all">All Genres</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="theme-filter">Theme:</label>
+                    <select id="theme-filter">
+                        <option value="all">All Themes</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="status-filter">Status:</label>
+                    <select id="status-filter">
+                        <option value="all">All Movies</option>
+                        <option value="watched">Watched</option>
+                        <option value="unwatched">Not Yet Seen</option>
+                        <option value="rated">Rated</option>
+                    </select>
+                </div>
+
+                <div class="filter-group search-group">
+                    <label for="search-input">Search:</label>
+                    <input type="text" id="search-input" placeholder="Search movies...">
+                </div>
+
+                <button id="reset-filters" class="btn-secondary">Reset Filters</button>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <span class="stat-number" id="total-movies">0</span>
+                    <span class="stat-label">Total Movies</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="watched-count">0</span>
+                    <span class="stat-label">Watched</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="unwatched-count">0</span>
+                    <span class="stat-label">Not Yet Seen</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="avg-rating">-</span>
+                    <span class="stat-label">Avg Rating</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sort Options -->
+        <section class="sort-section">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+                <option value="title-asc">Title (A-Z)</option>
+                <option value="title-desc">Title (Z-A)</option>
+                <option value="year-desc">Year (Newest)</option>
+                <option value="year-asc">Year (Oldest)</option>
+                <option value="rating-desc">Rating (Highest)</option>
+                <option value="rating-asc">Rating (Lowest)</option>
+            </select>
+        </section>
+
+        <!-- Movies Grid -->
+        <section class="movies-section">
+            <div id="movies-grid" class="movies-grid">
+                <!-- Movies will be dynamically loaded here -->
+            </div>
+            <div id="no-results" class="no-results" style="display: none;">
+                <p>No movies found matching your criteria.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Movie Detail Modal -->
+    <div id="movie-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body">
+                <!-- Movie details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Winter Holiday Movie Tracker | Track your holiday movie watching journey</p>
+            <button id="clear-data-btn" class="btn-danger">Clear All Data</button>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
