@@ -5,16 +5,20 @@ A comprehensive web application for tracking and rating winter holiday movies fr
 ## Features
 
 - **100 Curated Movies**: A diverse collection of classic and modern holiday films from various genres
+- **Beautiful Winter Theme**: Festive green and white color scheme with animated silver snowflakes
+- **Movie Posters**: High-quality poster images for every movie
+- **Trailer Links**: One-click access to watch movie trailers on YouTube
 - **Multiple Holiday Celebrations**: Movies tagged for Christmas, Hanukkah, Kwanzaa, New Years, Winter Solstice, Noche Buena, and Las Posadas
 - **Smart Recommendations**: Personalized movie suggestions based on your ratings and preferences
 - **Local Storage**: All your ratings and viewing history are saved in your browser
-- **Star Rating System**: Rate movies from 1-5 stars
+- **Star Rating System**: Rate movies from 1-5 stars with silver star icons
 - **Watch Tracking**: Mark movies as watched or not yet seen
 - **Advanced Filtering**: Filter by holiday, genre, theme, and watch status
 - **Search Functionality**: Search movies by title, description, holiday, or theme
 - **Sorting Options**: Sort by title, year, or rating
 - **Live Statistics**: Track total movies, watched count, and average rating
 - **Responsive Design**: Works beautifully on desktop, tablet, and mobile devices
+- **Animated Background**: Falling snowflakes create a festive winter atmosphere
 
 ## Movie Categories
 
@@ -32,29 +36,43 @@ The collection includes movies for:
 
 Each movie includes:
 - Title and release year
+- Movie poster image
+- Trailer link (YouTube)
 - Associated holidays
 - Genre classification
 - Multiple theme tags
 - Detailed description
 
+## Design & Aesthetics
+
+The tracker features a beautiful **winter holiday theme**:
+- **Color Palette**: Forest green (#0d5e2f) and white with silver (#c0c0c0) accents
+- **Animated Snowflakes**: 20 silver snowflakes continuously falling across the screen
+- **Card Design**: Clean white cards with green borders and soft shadows
+- **Responsive Layout**: Adapts beautifully to all screen sizes
+- **Interactive Elements**: Smooth hover effects and transitions
+- **Holiday Spirit**: Festive visual design that captures the magic of winter celebrations
+
 ## Technologies Used
 
 - **HTML5**: Semantic markup structure
-- **CSS3**: Modern responsive design with CSS Grid and Flexbox
+- **CSS3**: Modern responsive design with CSS Grid, Flexbox, and CSS animations
 - **Vanilla JavaScript**: ES6+ features including classes, async/await, and localStorage
-- **JSON**: Movie data storage
+- **JSON**: Movie data storage with poster and trailer URLs
 
 ## Usage
 
 ### Viewing Movies
 
 Browse the complete collection with beautiful card-based layouts. Each card displays:
+- Movie poster image
 - Movie title and year
 - Holiday tags
 - Theme tags
 - Genre
 - Description
-- Your rating
+- Trailer link button
+- Your rating (silver stars)
 - Watch status
 
 ### Rating Movies

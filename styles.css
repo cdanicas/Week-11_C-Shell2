@@ -1,20 +1,21 @@
-/* Root Variables */
+/* Root Variables - Green & White Winter Theme */
 :root {
-    --primary-color: #1a472a;
-    --secondary-color: #8b2635;
-    --accent-color: #d4af37;
-    --light-bg: #f5f5f0;
+    --primary-color: #0d5e2f;
+    --secondary-color: #1a7a42;
+    --accent-color: #c0c0c0;
+    --light-bg: #f0fff0;
     --card-bg: #ffffff;
-    --text-dark: #2c3e50;
-    --text-light: #7f8c8d;
-    --border-color: #e0e0e0;
+    --text-dark: #1a4d2e;
+    --text-light: #4a7c59;
+    --border-color: #d0e8d8;
     --success-color: #27ae60;
     --warning-color: #f39c12;
     --danger-color: #e74c3c;
-    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
-    --star-color: #ffd700;
-    --star-empty: #ddd;
+    --shadow: 0 2px 8px rgba(13, 94, 47, 0.15);
+    --shadow-hover: 0 4px 16px rgba(13, 94, 47, 0.25);
+    --star-color: #c0c0c0;
+    --star-empty: #e8e8e8;
+    --snowflake-color: #c0c0c0;
 }
 
 /* Global Styles */
@@ -26,17 +27,67 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #d4f1d4 50%, #a8e6a8 100%);
     background-attachment: fixed;
     color: var(--text-dark);
     line-height: 1.6;
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Snowflakes Background */
+.snowflake {
+    position: fixed;
+    top: -10px;
+    z-index: 1;
+    user-select: none;
+    cursor: default;
+    animation-name: snowfall;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 0.8;
+    color: var(--snowflake-color);
+    font-size: 1.5em;
+    text-shadow: 0 0 5px rgba(192, 192, 192, 0.8);
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+.snowflake:nth-of-type(2n) {
+    animation-duration: 12s;
+    font-size: 1.2em;
+}
+
+.snowflake:nth-of-type(3n) {
+    animation-duration: 15s;
+    font-size: 1.8em;
+}
+
+.snowflake:nth-of-type(4n) {
+    animation-duration: 9s;
+    font-size: 1em;
+}
+
+.snowflake:nth-of-type(5n) {
+    animation-duration: 14s;
+    font-size: 1.4em;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 10;
 }
 
 /* Header */
@@ -45,7 +96,9 @@ header {
     color: white;
     padding: 2rem 0;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(13, 94, 47, 0.3);
+    position: relative;
+    z-index: 100;
 }
 
 header h1 {
@@ -170,12 +223,13 @@ main {
 
 /* Recommendations Section */
 .recommendations-section {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(135deg, #0d5e2f 0%, #1a7a42 100%);
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2rem;
     box-shadow: var(--shadow-hover);
     animation: fadeIn 0.5s ease;
+    border: 2px solid var(--accent-color);
 }
 
 @keyframes fadeIn {
@@ -327,6 +381,20 @@ main {
 
 .movie-card.unwatched {
     border-left: 4px solid var(--border-color);
+}
+
+.movie-poster {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.movie-poster:hover {
+    transform: scale(1.02);
 }
 
 .movie-header {
@@ -482,6 +550,32 @@ main {
 
 .btn-danger:hover {
     background: #c0392b;
+}
+
+.btn-trailer {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #a0a0a0 100%);
+    color: var(--text-dark);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-trailer:hover {
+    background: linear-gradient(135deg, #a0a0a0 0%, var(--accent-color) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-trailer::before {
+    content: '▶ ';
+    margin-right: 0.3rem;
 }
 
 /* Status Badges */

@@ -238,6 +238,8 @@ class MovieTracker {
         card.setAttribute('data-movie-id', movie.id);
 
         card.innerHTML = `
+            <img src="${movie.poster}" alt="${movie.title} Poster" class="movie-poster" loading="lazy">
+
             <div class="movie-header">
                 <h3 class="movie-title">${movie.title}</h3>
                 <div class="movie-year">${movie.year}</div>
@@ -255,6 +257,8 @@ class MovieTracker {
             <div class="movie-description">
                 ${movie.description}
             </div>
+
+            <a href="${movie.trailer}" target="_blank" rel="noopener noreferrer" class="btn-trailer">Watch Trailer</a>
 
             <div class="rating-section">
                 <div class="current-rating">
@@ -570,6 +574,8 @@ class MovieTracker {
             card.innerHTML = `
                 <span class="recommendation-badge">Recommended</span>
 
+                <img src="${movie.poster}" alt="${movie.title} Poster" class="movie-poster" loading="lazy">
+
                 <div class="movie-header">
                     <h3 class="movie-title">${movie.title}</h3>
                     <div class="movie-year">${movie.year}</div>
@@ -596,6 +602,8 @@ class MovieTracker {
                 <div class="movie-description">
                     ${movie.description}
                 </div>
+
+                <a href="${movie.trailer}" target="_blank" rel="noopener noreferrer" class="btn-trailer">Watch Trailer</a>
 
                 <div class="rating-section">
                     <div class="current-rating">
