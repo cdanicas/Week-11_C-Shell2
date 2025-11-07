@@ -6,6 +6,7 @@ A comprehensive web application for tracking and rating winter holiday movies fr
 
 - **100 Curated Movies**: A diverse collection of classic and modern holiday films from various genres
 - **Multiple Holiday Celebrations**: Movies tagged for Christmas, Hanukkah, Kwanzaa, New Years, Winter Solstice, Noche Buena, and Las Posadas
+- **Smart Recommendations**: Personalized movie suggestions based on your ratings and preferences
 - **Local Storage**: All your ratings and viewing history are saved in your browser
 - **Star Rating System**: Rate movies from 1-5 stars
 - **Watch Tracking**: Mark movies as watched or not yet seen
@@ -83,6 +84,23 @@ Sort your filtered results by:
 - Title (A-Z or Z-A)
 - Year (Newest or Oldest first)
 - Rating (Highest or Lowest first)
+
+### Smart Recommendations
+
+The app features an intelligent recommendation system that suggests unwatched movies based on your ratings:
+
+- **Automatic Activation**: Recommendations appear when you rate movies 4-5 stars
+- **Personalized Suggestions**: Up to 6 movies recommended based on your preferences
+- **Match Percentage**: See how well each recommendation matches your taste
+- **Smart Algorithm**: Analyzes your preferences across multiple dimensions:
+  - **Genres** (30% weight): Suggests movies in genres you've rated highly
+  - **Themes** (40% weight): Matches thematic elements you enjoy
+  - **Holidays** (20% weight): Recommends movies from holidays you prefer
+  - **Decades** (10% weight): Considers your preferred film eras
+- **Clear Explanations**: Each recommendation shows why it was suggested
+- **Interactive Cards**: Rate or mark recommendations as watched directly from the suggestion
+
+The more movies you rate, the better the recommendations become!
 
 ## GitHub Pages Deployment
 
