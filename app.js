@@ -13,6 +13,7 @@ class MovieTracker {
             await this.loadMovies();
             this.setupEventListeners();
             this.populateFilterOptions();
+            this.renderRecommendations();
             this.applyFilters();
             this.updateStatistics();
         } catch (error) {
@@ -58,6 +59,7 @@ class MovieTracker {
         this.userData[movieId] = { ...this.getMovieUserData(movieId), ...data };
         this.saveUserData();
         this.updateStatistics();
+        this.renderRecommendations();
     }
 
     // Setup event listeners
@@ -394,11 +396,241 @@ class MovieTracker {
         document.getElementById('avg-rating').textContent = avgRating !== '-' ? `${avgRating} ★` : avgRating;
     }
 
+    // Generate movie recommendations based on user ratings
+    generateRecommendations() {
+        // Get all rated movies (4-5 stars are considered favorites)
+        const highlyRatedMovies = this.movies.filter(movie => {
+            const userData = this.getMovieUserData(movie.id);
+            return userData.rating >= 4;
+        });
+
+        // If user hasn't rated any movies highly, don't show recommendations
+        if (highlyRatedMovies.length === 0) {
+            document.getElementById('recommendations-section').style.display = 'none';
+            return [];
+        }
+
+        // Analyze user preferences
+        const preferences = {
+            genres: {},
+            themes: {},
+            holidays: {},
+            decades: {}
+        };
+
+        // Build preference profile from highly rated movies
+        highlyRatedMovies.forEach(movie => {
+            const userData = this.getMovieUserData(movie.id);
+            const weight = userData.rating; // 4 or 5 stars
+
+            // Count genres
+            preferences.genres[movie.genre] = (preferences.genres[movie.genre] || 0) + weight;
+
+            // Count themes
+            movie.themes.forEach(theme => {
+                preferences.themes[theme] = (preferences.themes[theme] || 0) + weight;
+            });
+
+            // Count holidays
+            movie.holidays.forEach(holiday => {
+                preferences.holidays[holiday] = (preferences.holidays[holiday] || 0) + weight;
+            });
+
+            // Count decades
+            const decade = Math.floor(movie.year / 10) * 10;
+            preferences.decades[decade] = (preferences.decades[decade] || 0) + weight;
+        });
+
+        // Get unwatched movies
+        const unwatchedMovies = this.movies.filter(movie => {
+            const userData = this.getMovieUserData(movie.id);
+            return !userData.watched;
+        });
+
+        // Score each unwatched movie
+        const scoredMovies = unwatchedMovies.map(movie => {
+            let score = 0;
+            const reasons = [];
+
+            // Genre match (30% weight)
+            if (preferences.genres[movie.genre]) {
+                const genreScore = preferences.genres[movie.genre] * 0.3;
+                score += genreScore;
+                reasons.push({
+                    type: 'genre',
+                    value: movie.genre,
+                    score: genreScore
+                });
+            }
+
+            // Theme matches (40% weight)
+            let themeScore = 0;
+            const matchedThemes = [];
+            movie.themes.forEach(theme => {
+                if (preferences.themes[theme]) {
+                    themeScore += preferences.themes[theme] * 0.1;
+                    matchedThemes.push(theme);
+                }
+            });
+            if (themeScore > 0) {
+                score += themeScore;
+                reasons.push({
+                    type: 'themes',
+                    value: matchedThemes,
+                    score: themeScore
+                });
+            }
+
+            // Holiday matches (20% weight)
+            let holidayScore = 0;
+            const matchedHolidays = [];
+            movie.holidays.forEach(holiday => {
+                if (preferences.holidays[holiday]) {
+                    holidayScore += preferences.holidays[holiday] * 0.2;
+                    matchedHolidays.push(holiday);
+                }
+            });
+            if (holidayScore > 0) {
+                score += holidayScore;
+                reasons.push({
+                    type: 'holidays',
+                    value: matchedHolidays,
+                    score: holidayScore
+                });
+            }
+
+            // Decade preference (10% weight)
+            const decade = Math.floor(movie.year / 10) * 10;
+            if (preferences.decades[decade]) {
+                const decadeScore = preferences.decades[decade] * 0.1;
+                score += decadeScore;
+                reasons.push({
+                    type: 'decade',
+                    value: `${decade}s`,
+                    score: decadeScore
+                });
+            }
+
+            return {
+                movie,
+                score,
+                reasons: reasons.sort((a, b) => b.score - a.score)
+            };
+        });
+
+        // Sort by score and return top 6
+        const recommendations = scoredMovies
+            .filter(item => item.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 6);
+
+        return recommendations;
+    }
+
+    // Render recommendations section
+    renderRecommendations() {
+        const recommendations = this.generateRecommendations();
+        const section = document.getElementById('recommendations-section');
+        const grid = document.getElementById('recommendations-grid');
+
+        if (recommendations.length === 0) {
+            section.style.display = 'none';
+            return;
+        }
+
+        section.style.display = 'block';
+        grid.innerHTML = '';
+
+        recommendations.forEach((rec, index) => {
+            const movie = rec.movie;
+            const userData = this.getMovieUserData(movie.id);
+
+            // Calculate match percentage (normalize score to 0-100%)
+            const maxPossibleScore = 5 * (0.3 + 0.4 + 0.2 + 0.1); // Max score if all preferences match
+            const matchPercentage = Math.min(100, Math.round((rec.score / maxPossibleScore) * 100));
+
+            // Get primary reason
+            const primaryReason = rec.reasons[0];
+            let reasonText = '';
+
+            if (primaryReason.type === 'genre') {
+                reasonText = `You enjoyed other <strong>${primaryReason.value}</strong> movies`;
+            } else if (primaryReason.type === 'themes') {
+                reasonText = `Shares themes: <strong>${primaryReason.value.join(', ')}</strong>`;
+            } else if (primaryReason.type === 'holidays') {
+                reasonText = `You love <strong>${primaryReason.value.join(', ')}</strong> movies`;
+            } else if (primaryReason.type === 'decade') {
+                reasonText = `From the <strong>${primaryReason.value}</strong> you enjoy`;
+            }
+
+            const card = document.createElement('div');
+            card.className = 'recommendation-card movie-card unwatched';
+            card.setAttribute('data-movie-id', movie.id);
+
+            card.innerHTML = `
+                <span class="recommendation-badge">Recommended</span>
+
+                <div class="movie-header">
+                    <h3 class="movie-title">${movie.title}</h3>
+                    <div class="movie-year">${movie.year}</div>
+                    <div class="movie-genres">${movie.genre}</div>
+                </div>
+
+                <div class="movie-holidays">
+                    ${movie.holidays.map(holiday => `<span class="holiday-tag">${holiday}</span>`).join('')}
+                </div>
+
+                <div class="recommendation-reason">
+                    ${reasonText}
+                </div>
+
+                <div class="match-score">
+                    <span class="match-score-label">Match:</span>
+                    <span class="match-score-value">${matchPercentage}%</span>
+                </div>
+
+                <div class="movie-themes">
+                    ${movie.themes.map(theme => `<span class="theme-tag">${theme}</span>`).join('')}
+                </div>
+
+                <div class="movie-description">
+                    ${movie.description}
+                </div>
+
+                <div class="rating-section">
+                    <div class="current-rating">
+                        <span class="rating-label">Your Rating:</span>
+                        <div class="stars" data-movie-id="${movie.id}">
+                            ${this.createStars(userData.rating, movie.id)}
+                        </div>
+                    </div>
+
+                    <div class="watch-status">
+                        <button class="btn ${userData.watched ? 'btn-secondary' : 'btn-primary'} watch-btn"
+                                data-movie-id="${movie.id}">
+                            ${userData.watched ? 'Mark as Unwatched' : 'Mark as Watched'}
+                        </button>
+                    </div>
+
+                    <span class="status-badge ${userData.watched ? 'status-watched' : 'status-unwatched'}">
+                        ${userData.watched ? 'Watched' : 'Not Yet Seen'}
+                    </span>
+                </div>
+            `;
+
+            // Add event listeners
+            this.attachCardEventListeners(card, movie);
+
+            grid.appendChild(card);
+        });
+    }
+
     // Clear all user data
     clearAllData() {
         if (confirm('Are you sure you want to clear all your movie tracking data? This cannot be undone.')) {
             localStorage.removeItem('movieTrackerData');
             this.userData = {};
+            this.renderRecommendations();
             this.applyFilters();
             alert('All data has been cleared!');
         }
