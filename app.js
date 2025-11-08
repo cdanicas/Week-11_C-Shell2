@@ -51,7 +51,7 @@ class MovieTracker {
 
     // Get user data for a specific movie
     getMovieUserData(movieId) {
-        return this.userData[movieId] || { watched: false, rating: 0 };
+        return this.userData[movieId] || { watched: false, rating: 0, wishlist: false, notInterested: false };
     }
 
     // Set user data for a specific movie
@@ -127,6 +127,13 @@ class MovieTracker {
         const searchQuery = document.getElementById('search-input').value.toLowerCase();
 
         this.filteredMovies = this.movies.filter(movie => {
+            const userData = this.getMovieUserData(movie.id);
+
+            // Always filter out movies marked as not interested
+            if (userData.notInterested) {
+                return false;
+            }
+
             // Holiday filter
             if (holidayFilter !== 'all' && !movie.holidays.includes(holidayFilter)) {
                 return false;
@@ -143,11 +150,10 @@ class MovieTracker {
             }
 
             // Status filter
-            const userData = this.getMovieUserData(movie.id);
             if (statusFilter === 'watched' && !userData.watched) {
                 return false;
             }
-            if (statusFilter === 'unwatched' && userData.watched) {
+            if (statusFilter === 'unwatched' && (userData.watched || userData.wishlist)) {
                 return false;
             }
             if (statusFilter === 'rated' && userData.rating === 0) {
@@ -237,9 +243,18 @@ class MovieTracker {
         card.className = `movie-card ${userData.watched ? 'watched' : 'unwatched'}`;
         card.setAttribute('data-movie-id', movie.id);
 
-        card.innerHTML = `
-            <img src="${movie.poster}" alt="${movie.title} Poster" class="movie-poster" loading="lazy">
+        // Determine status
+        let statusText = 'Not Yet Seen';
+        let statusClass = 'status-unwatched';
+        if (userData.watched) {
+            statusText = 'Watched';
+            statusClass = 'status-watched';
+        } else if (userData.wishlist) {
+            statusText = 'Want to Watch';
+            statusClass = 'status-wishlist';
+        }
 
+        card.innerHTML = `
             <div class="movie-header">
                 <h3 class="movie-title">${movie.title}</h3>
                 <div class="movie-year">${movie.year}</div>
@@ -269,14 +284,25 @@ class MovieTracker {
                 </div>
 
                 <div class="watch-status">
-                    <button class="btn ${userData.watched ? 'btn-secondary' : 'btn-primary'} watch-btn"
+                    <div class="watch-status-row">
+                        <button class="btn ${userData.watched ? 'btn-secondary' : 'btn-primary'} watch-btn"
+                                data-movie-id="${movie.id}">
+                            ${userData.watched ? 'Mark as Unwatched' : 'Mark as Watched'}
+                        </button>
+                        <button class="btn ${userData.wishlist ? 'btn-secondary' : 'btn-wishlist'} wishlist-btn"
+                                data-movie-id="${movie.id}"
+                                ${userData.watched ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
+                            ${userData.wishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+                        </button>
+                    </div>
+                    <button class="btn btn-not-interested not-interested-btn"
                             data-movie-id="${movie.id}">
-                        ${userData.watched ? 'Mark as Unwatched' : 'Mark as Watched'}
+                        Not Interested
                     </button>
                 </div>
 
-                <span class="status-badge ${userData.watched ? 'status-watched' : 'status-unwatched'}">
-                    ${userData.watched ? 'Watched' : 'Not Yet Seen'}
+                <span class="status-badge ${statusClass}">
+                    ${statusText}
                 </span>
             </div>
         `;
@@ -326,6 +352,24 @@ class MovieTracker {
             e.stopPropagation();
             this.toggleWatchStatus(movie.id);
         });
+
+        // Wishlist button click
+        const wishlistBtn = card.querySelector('.wishlist-btn');
+        if (wishlistBtn) {
+            wishlistBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.toggleWishlist(movie.id);
+            });
+        }
+
+        // Not interested button click
+        const notInterestedBtn = card.querySelector('.not-interested-btn');
+        if (notInterestedBtn) {
+            notInterestedBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.markNotInterested(movie.id);
+            });
+        }
     }
 
     // Highlight stars on hover
@@ -363,7 +407,12 @@ class MovieTracker {
     // Toggle watch status
     toggleWatchStatus(movieId) {
         const currentData = this.getMovieUserData(movieId);
-        this.setMovieUserData(movieId, { watched: !currentData.watched });
+        const newWatchedStatus = !currentData.watched;
+
+        this.setMovieUserData(movieId, {
+            watched: newWatchedStatus,
+            wishlist: false  // Remove from wishlist if marking as watched
+        });
 
         // If marking as unwatched, also clear the rating
         if (currentData.watched) {
@@ -371,6 +420,36 @@ class MovieTracker {
         }
 
         this.applyFilters();
+    }
+
+    // Toggle wishlist status
+    toggleWishlist(movieId) {
+        const currentData = this.getMovieUserData(movieId);
+
+        // Can't add to wishlist if already watched
+        if (currentData.watched) {
+            return;
+        }
+
+        this.setMovieUserData(movieId, {
+            wishlist: !currentData.wishlist
+        });
+
+        this.applyFilters();
+    }
+
+    // Mark movie as not interested
+    markNotInterested(movieId) {
+        if (confirm('Are you sure you want to hide this movie? It will be permanently removed from your list.')) {
+            this.setMovieUserData(movieId, {
+                notInterested: true,
+                watched: false,
+                wishlist: false,
+                rating: 0
+            });
+
+            this.applyFilters();
+        }
     }
 
     // Update statistics display
@@ -445,10 +524,10 @@ class MovieTracker {
             preferences.decades[decade] = (preferences.decades[decade] || 0) + weight;
         });
 
-        // Get unwatched movies
+        // Get unwatched movies (exclude not interested movies)
         const unwatchedMovies = this.movies.filter(movie => {
             const userData = this.getMovieUserData(movie.id);
-            return !userData.watched;
+            return !userData.watched && !userData.notInterested;
         });
 
         // Score each unwatched movie
@@ -571,10 +650,19 @@ class MovieTracker {
             card.className = 'recommendation-card movie-card unwatched';
             card.setAttribute('data-movie-id', movie.id);
 
+            // Determine status for recommendation
+            let statusText = 'Not Yet Seen';
+            let statusClass = 'status-unwatched';
+            if (userData.watched) {
+                statusText = 'Watched';
+                statusClass = 'status-watched';
+            } else if (userData.wishlist) {
+                statusText = 'Want to Watch';
+                statusClass = 'status-wishlist';
+            }
+
             card.innerHTML = `
                 <span class="recommendation-badge">Recommended</span>
-
-                <img src="${movie.poster}" alt="${movie.title} Poster" class="movie-poster" loading="lazy">
 
                 <div class="movie-header">
                     <h3 class="movie-title">${movie.title}</h3>
@@ -614,14 +702,25 @@ class MovieTracker {
                     </div>
 
                     <div class="watch-status">
-                        <button class="btn ${userData.watched ? 'btn-secondary' : 'btn-primary'} watch-btn"
+                        <div class="watch-status-row">
+                            <button class="btn ${userData.watched ? 'btn-secondary' : 'btn-primary'} watch-btn"
+                                    data-movie-id="${movie.id}">
+                                ${userData.watched ? 'Mark as Unwatched' : 'Mark as Watched'}
+                            </button>
+                            <button class="btn ${userData.wishlist ? 'btn-secondary' : 'btn-wishlist'} wishlist-btn"
+                                    data-movie-id="${movie.id}"
+                                    ${userData.watched ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
+                                ${userData.wishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+                            </button>
+                        </div>
+                        <button class="btn btn-not-interested not-interested-btn"
                                 data-movie-id="${movie.id}">
-                            ${userData.watched ? 'Mark as Unwatched' : 'Mark as Watched'}
+                            Not Interested
                         </button>
                     </div>
 
-                    <span class="status-badge ${userData.watched ? 'status-watched' : 'status-unwatched'}">
-                        ${userData.watched ? 'Watched' : 'Not Yet Seen'}
+                    <span class="status-badge ${statusClass}">
+                        ${statusText}
                     </span>
                 </div>
             `;
