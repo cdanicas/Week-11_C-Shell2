@@ -95,6 +95,17 @@ class MovieTracker {
             this.getOnlineRecommendations();
         });
 
+        // Quick filter buttons
+        document.getElementById('filter-watched-btn').addEventListener('click', () => {
+            this.applyQuickFilter('watched');
+        });
+        document.getElementById('filter-not-seen-btn').addEventListener('click', () => {
+            this.applyQuickFilter('unwatched');
+        });
+        document.getElementById('filter-all-btn').addEventListener('click', () => {
+            this.applyQuickFilter('all');
+        });
+
         // Modal close
         const modal = document.getElementById('movie-modal');
         const closeBtn = document.querySelector('.close');
@@ -231,6 +242,27 @@ class MovieTracker {
         document.getElementById('status-filter').value = 'all';
         document.getElementById('search-input').value = '';
         document.getElementById('sort-select').value = 'title-asc';
+        this.applyFilters();
+    }
+
+    // Apply quick filter (watched, unwatched, or all)
+    applyQuickFilter(filterType) {
+        // Update button states
+        document.querySelectorAll('.quick-filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        if (filterType === 'watched') {
+            document.getElementById('filter-watched-btn').classList.add('active');
+            document.getElementById('status-filter').value = 'watched';
+        } else if (filterType === 'unwatched') {
+            document.getElementById('filter-not-seen-btn').classList.add('active');
+            document.getElementById('status-filter').value = 'unwatched';
+        } else {
+            document.getElementById('filter-all-btn').classList.add('active');
+            document.getElementById('status-filter').value = 'all';
+        }
+
         this.applyFilters();
     }
 
