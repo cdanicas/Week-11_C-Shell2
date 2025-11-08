@@ -73,7 +73,7 @@
                     <select id="status-filter">
                         <option value="all">All Movies</option>
                         <option value="watched">Watched</option>
-                        <option value="unwatched">Not Yet Seen</option>
+                        <option value="unwatched">Not Seen</option>
                         <option value="rated">Rated</option>
                     </select>
                 </div>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="stat-card">
                     <span class="stat-number" id="unwatched-count">0</span>
-                    <span class="stat-label">Not Yet Seen</span>
+                    <span class="stat-label">Not Seen</span>
                 </div>
                 <div class="stat-card">
                     <span class="stat-number" id="avg-rating">-</span>
@@ -111,9 +111,14 @@
             <div class="recommendations-header">
                 <h2>🎬 Recommended For You</h2>
                 <p class="recommendations-subtitle">Based on your ratings, you might enjoy these movies</p>
+                <button id="get-online-recommendations-btn" class="btn-primary">Get Online Recommendations</button>
             </div>
             <div id="recommendations-grid" class="recommendations-grid">
                 <!-- Recommendations will be dynamically loaded here -->
+            </div>
+            <div id="online-recommendations-section" style="display: none; margin-top: 2rem;">
+                <h3>🌐 Online Recommendations</h3>
+                <div id="online-recommendations-content"></div>
             </div>
         </section>
 
@@ -153,10 +158,25 @@
 
     <footer>
         <div class="container">
+            <div class="footer-links">
+                <a href="#" id="show-not-interested-btn" class="footer-link">View Not Interested Movies (<span id="not-interested-count">0</span>)</a>
+            </div>
             <p>&copy; 2024 Winter Holiday Movie Tracker | Track your holiday movie watching journey</p>
             <button id="clear-data-btn" class="btn-danger">Clear All Data</button>
         </div>
     </footer>
+
+    <!-- Not Interested Movies Modal -->
+    <div id="not-interested-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-not-interested">&times;</span>
+            <h2>Not Interested Movies</h2>
+            <p class="modal-description">Movies you've marked as not interested. Click to restore them.</p>
+            <div id="not-interested-grid" class="not-interested-grid">
+                <!-- Not interested movies will be loaded here -->
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>

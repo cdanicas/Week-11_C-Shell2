@@ -51,7 +51,7 @@ class MovieTracker {
 
     // Get user data for a specific movie
     getMovieUserData(movieId) {
-        return this.userData[movieId] || { watched: false, rating: 0, wishlist: false, notInterested: false };
+        return this.userData[movieId] || { watched: false, rating: 0, watchlist: false, notInterested: false };
     }
 
     // Set user data for a specific movie
@@ -78,6 +78,23 @@ class MovieTracker {
         // Clear data button
         document.getElementById('clear-data-btn').addEventListener('click', () => this.clearAllData());
 
+        // Not interested modal
+        document.getElementById('show-not-interested-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showNotInterestedModal();
+        });
+
+        const notInterestedModal = document.getElementById('not-interested-modal');
+        const closeNotInterested = document.getElementById('close-not-interested');
+        closeNotInterested.addEventListener('click', () => {
+            notInterestedModal.style.display = 'none';
+        });
+
+        // Online recommendations button
+        document.getElementById('get-online-recommendations-btn').addEventListener('click', () => {
+            this.getOnlineRecommendations();
+        });
+
         // Modal close
         const modal = document.getElementById('movie-modal');
         const closeBtn = document.querySelector('.close');
@@ -87,6 +104,9 @@ class MovieTracker {
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
+            }
+            if (e.target === notInterestedModal) {
+                notInterestedModal.style.display = 'none';
             }
         });
     }
@@ -153,7 +173,7 @@ class MovieTracker {
             if (statusFilter === 'watched' && !userData.watched) {
                 return false;
             }
-            if (statusFilter === 'unwatched' && (userData.watched || userData.wishlist)) {
+            if (statusFilter === 'unwatched' && (userData.watched || userData.watchlist)) {
                 return false;
             }
             if (statusFilter === 'rated' && userData.rating === 0) {
@@ -244,14 +264,11 @@ class MovieTracker {
         card.setAttribute('data-movie-id', movie.id);
 
         // Determine status
-        let statusText = 'Not Yet Seen';
-        let statusClass = 'status-unwatched';
+        let statusBadge = '';
         if (userData.watched) {
-            statusText = 'Watched';
-            statusClass = 'status-watched';
-        } else if (userData.wishlist) {
-            statusText = 'Want to Watch';
-            statusClass = 'status-wishlist';
+            statusBadge = '<span class="status-badge status-watched">Watched</span>';
+        } else if (userData.watchlist) {
+            statusBadge = '<span class="status-badge status-watchlist">Want to Watch</span>';
         }
 
         card.innerHTML = `
@@ -289,10 +306,10 @@ class MovieTracker {
                                 data-movie-id="${movie.id}">
                             ${userData.watched ? 'Mark as Unwatched' : 'Mark as Watched'}
                         </button>
-                        <button class="btn ${userData.wishlist ? 'btn-secondary' : 'btn-wishlist'} wishlist-btn"
+                        <button class="btn ${userData.watchlist ? 'btn-secondary' : 'btn-watchlist'} watchlist-btn"
                                 data-movie-id="${movie.id}"
                                 ${userData.watched ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
-                            ${userData.wishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+                            ${userData.watchlist ? 'Remove from Watch List' : 'Add to Watch List'}
                         </button>
                     </div>
                     <button class="btn btn-not-interested not-interested-btn"
@@ -301,9 +318,7 @@ class MovieTracker {
                     </button>
                 </div>
 
-                <span class="status-badge ${statusClass}">
-                    ${statusText}
-                </span>
+                ${statusBadge}
             </div>
         `;
 
@@ -354,9 +369,9 @@ class MovieTracker {
         });
 
         // Wishlist button click
-        const wishlistBtn = card.querySelector('.wishlist-btn');
-        if (wishlistBtn) {
-            wishlistBtn.addEventListener('click', (e) => {
+        const watchlistBtn = card.querySelector('.watchlist-btn');
+        if (watchlistBtn) {
+            watchlistBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 this.toggleWishlist(movie.id);
             });
@@ -411,7 +426,7 @@ class MovieTracker {
 
         this.setMovieUserData(movieId, {
             watched: newWatchedStatus,
-            wishlist: false  // Remove from wishlist if marking as watched
+            watchlist: false  // Remove from watchlist if marking as watched
         });
 
         // If marking as unwatched, also clear the rating
@@ -422,17 +437,17 @@ class MovieTracker {
         this.applyFilters();
     }
 
-    // Toggle wishlist status
+    // Toggle watchlist status
     toggleWishlist(movieId) {
         const currentData = this.getMovieUserData(movieId);
 
-        // Can't add to wishlist if already watched
+        // Can't add to watchlist if already watched
         if (currentData.watched) {
             return;
         }
 
         this.setMovieUserData(movieId, {
-            wishlist: !currentData.wishlist
+            watchlist: !currentData.watchlist
         });
 
         this.applyFilters();
@@ -444,7 +459,7 @@ class MovieTracker {
             this.setMovieUserData(movieId, {
                 notInterested: true,
                 watched: false,
-                wishlist: false,
+                watchlist: false,
                 rating: 0
             });
 
@@ -473,10 +488,20 @@ class MovieTracker {
         const unwatchedCount = totalMovies - watchedCount;
         const avgRating = ratedCount > 0 ? (totalRating / ratedCount).toFixed(1) : '-';
 
+        // Count not interested movies
+        let notInterestedCount = 0;
+        this.movies.forEach(movie => {
+            const userData = this.getMovieUserData(movie.id);
+            if (userData.notInterested) {
+                notInterestedCount++;
+            }
+        });
+
         document.getElementById('total-movies').textContent = totalMovies;
         document.getElementById('watched-count').textContent = watchedCount;
         document.getElementById('unwatched-count').textContent = unwatchedCount;
         document.getElementById('avg-rating').textContent = avgRating !== '-' ? `${avgRating} ★` : avgRating;
+        document.getElementById('not-interested-count').textContent = notInterestedCount;
     }
 
     // Generate movie recommendations based on user ratings
@@ -651,14 +676,11 @@ class MovieTracker {
             card.setAttribute('data-movie-id', movie.id);
 
             // Determine status for recommendation
-            let statusText = 'Not Yet Seen';
-            let statusClass = 'status-unwatched';
+            let statusBadge = '';
             if (userData.watched) {
-                statusText = 'Watched';
-                statusClass = 'status-watched';
-            } else if (userData.wishlist) {
-                statusText = 'Want to Watch';
-                statusClass = 'status-wishlist';
+                statusBadge = '<span class="status-badge status-watched">Watched</span>';
+            } else if (userData.watchlist) {
+                statusBadge = '<span class="status-badge status-watchlist">Want to Watch</span>';
             }
 
             card.innerHTML = `
@@ -707,10 +729,10 @@ class MovieTracker {
                                     data-movie-id="${movie.id}">
                                 ${userData.watched ? 'Mark as Unwatched' : 'Mark as Watched'}
                             </button>
-                            <button class="btn ${userData.wishlist ? 'btn-secondary' : 'btn-wishlist'} wishlist-btn"
+                            <button class="btn ${userData.watchlist ? 'btn-secondary' : 'btn-watchlist'} watchlist-btn"
                                     data-movie-id="${movie.id}"
                                     ${userData.watched ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
-                                ${userData.wishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+                                ${userData.watchlist ? 'Remove from Watch List' : 'Add to Watch List'}
                             </button>
                         </div>
                         <button class="btn btn-not-interested not-interested-btn"
@@ -719,9 +741,7 @@ class MovieTracker {
                         </button>
                     </div>
 
-                    <span class="status-badge ${statusClass}">
-                        ${statusText}
-                    </span>
+                    ${statusBadge}
                 </div>
             `;
 
@@ -751,6 +771,109 @@ class MovieTracker {
                 <p style="color: var(--danger-color);">${message}</p>
             </div>
         `;
+    }
+
+    // Show not interested movies modal
+    showNotInterestedModal() {
+        const modal = document.getElementById('not-interested-modal');
+        const grid = document.getElementById('not-interested-grid');
+
+        // Get all not interested movies
+        const notInterestedMovies = this.movies.filter(movie => {
+            const userData = this.getMovieUserData(movie.id);
+            return userData.notInterested;
+        });
+
+        if (notInterestedMovies.length === 0) {
+            grid.innerHTML = '<p style="text-align: center; color: var(--text-light);">No movies marked as not interested.</p>';
+        } else {
+            grid.innerHTML = '';
+            notInterestedMovies.forEach(movie => {
+                const item = document.createElement('div');
+                item.className = 'not-interested-item';
+                item.innerHTML = `
+                    <h4>${movie.title}</h4>
+                    <p>${movie.year} • ${movie.genre}</p>
+                    <p style="font-size: 0.8rem; color: var(--text-light);">Click to restore</p>
+                `;
+                item.addEventListener('click', () => {
+                    if (confirm(`Restore "${movie.title}" to your movie list?`)) {
+                        this.setMovieUserData(movie.id, {
+                            notInterested: false
+                        });
+                        this.showNotInterestedModal(); // Refresh the modal
+                        this.applyFilters(); // Refresh main view
+                    }
+                });
+                grid.appendChild(item);
+            });
+        }
+
+        modal.style.display = 'block';
+    }
+
+    // Get online recommendations
+    async getOnlineRecommendations() {
+        const button = document.getElementById('get-online-recommendations-btn');
+        const content = document.getElementById('online-recommendations-content');
+        const section = document.getElementById('online-recommendations-section');
+
+        button.disabled = true;
+        button.textContent = 'Loading...';
+
+        try {
+            // Get user's favorite genres and themes
+            const favorites = this.movies.filter(movie => {
+                const userData = this.getMovieUserData(movie.id);
+                return userData.rating >= 4;
+            });
+
+            if (favorites.length === 0) {
+                content.innerHTML = `
+                    <p style="color: var(--text-light);">Please rate some movies 4-5 stars first to get personalized online recommendations.</p>
+                `;
+                section.style.display = 'block';
+                return;
+            }
+
+            // Analyze favorite genres and holidays
+            const genreCounts = {};
+            const holidayCounts = {};
+            favorites.forEach(movie => {
+                genreCounts[movie.genre] = (genreCounts[movie.genre] || 0) + 1;
+                movie.holidays.forEach(holiday => {
+                    holidayCounts[holiday] = (holidayCounts[holiday] || 0) + 1;
+                });
+            });
+
+            const topGenre = Object.keys(genreCounts).sort((a, b) => genreCounts[b] - genreCounts[a])[0];
+            const topHoliday = Object.keys(holidayCounts).sort((a, b) => holidayCounts[b] - holidayCounts[a])[0];
+
+            // Create a simple recommendation message based on preferences
+            content.innerHTML = `
+                <h4>Based on Your Preferences</h4>
+                <p>You seem to enjoy <strong>${topGenre}</strong> movies, especially those celebrating <strong>${topHoliday}</strong>.</p>
+                <p>Here are some online resources for finding similar movies:</p>
+                <ul>
+                    <li><a href="https://www.imdb.com/search/title/?genres=${topGenre.toLowerCase()}&title_type=feature" target="_blank" rel="noopener noreferrer">IMDb - ${topGenre} Movies</a></li>
+                    <li><a href="https://www.rottentomatoes.com/browse/movies_in_theaters/genres:${topGenre.toLowerCase()}" target="_blank" rel="noopener noreferrer">Rotten Tomatoes - ${topGenre} Section</a></li>
+                    <li><a href="https://www.justwatch.com/us/search?q=${topHoliday.replace(' ', '%20')}%20movies" target="_blank" rel="noopener noreferrer">JustWatch - ${topHoliday} Movies</a></li>
+                    <li><a href="https://www.themoviedb.org/search?query=${topHoliday.replace(' ', '+')}+${topGenre.replace(' ', '+')}" target="_blank" rel="noopener noreferrer">The Movie Database - Similar Movies</a></li>
+                </ul>
+                <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem;">These links will open in new tabs and help you discover more holiday movies based on your tastes!</p>
+            `;
+
+            section.style.display = 'block';
+        } catch (error) {
+            console.error('Error getting online recommendations:', error);
+            content.innerHTML = `
+                <p style="color: var(--danger-color);">Failed to generate recommendations. Please try again later.</p>
+            `;
+            section.style.display = 'block';
+        } finally {
+            button.disabled = false;
+            button.textContent = 'Get Online Recommendations';
+        }
     }
 }
 
